@@ -10,16 +10,24 @@ class HomeScreen extends StatelessWidget { // [cite: 163]
     return Scaffold( // [cite: 178]
       appBar: AppBar(title: const Text('Menu Utama')), // [cite: 179]
       body: Center( // [cite: 179]
-        child: ElevatedButton( // [cite: 180]
-          onPressed: () { // [cite: 181]
+        child: Padding( // [cite: 180]
+          padding: const EdgeInsets.all(16.0),
+    child: ListTile(
+      leading: Icon(Icons.camera_alt, color: Colors.blue), // [cite: 20]
+      title: Text('Mulai Pindai Teks Baru'), // [cite: 20]
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side: BorderSide(color: Colors.grey.shade300),
+      ),
+      onTap: () { // [cite: 181]
             Navigator.push( // [cite: 182]
               context,
               MaterialPageRoute(builder: (context) => const ScanScreen()), // [cite: 184, 185]
             );
-          },
-          child: const Text('Mulai Scan Teks'), // [cite: 193]
+            },
+          ),
         ),
       ),
-    );
+    ); // 
   }
 }

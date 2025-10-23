@@ -1,5 +1,5 @@
-// Salin semua kode ini ke lib/screens/result_screen.dart
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
 class ResultScreen extends StatelessWidget { // [cite: 391]
   final String ocrText; // [cite: 392]
@@ -20,6 +20,18 @@ class ResultScreen extends StatelessWidget { // [cite: 391]
             style: const TextStyle(fontSize: 18), // [cite: 417]
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Kembali ke HomeScreen dan hapus semua rute di atasnya
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false, // Ini akan menghapus semua stack
+          );
+        },
+        tooltip: 'Kembali ke Home',
+        child: const Icon(Icons.home), // Ikon home sesuai instruksi
       ),
     );
   }
