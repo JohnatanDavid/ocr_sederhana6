@@ -81,16 +81,32 @@ class _ScanScreenState extends State<ScanScreen> { // [cite: 228]
       );
     } catch (e) { // [cite: 323]
       if (!mounted) return; // [cite: 325]
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error saat mengambil/memproses foto: $e'))); // [cite: 326, 327]
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+          'Pemindaian Gagal! Periksa Izin Kamera atau coba lagi.'), // [cite: 45]
+      ));
     }
   }
 
   @override
   Widget build(BuildContext context) { // [cite: 334]
     if (!_isCameraInitialized) { // [cite: 335] (modifikasi)
-      return const Scaffold(
-          body: Center(child: CircularProgressIndicator())); // [cite: 336, 337]
+      return Scaffold(
+      backgroundColor: Colors.grey[900], // [cite: 40]
+        body: Center( // [cite: 41]
+          child: Column( // [cite:  
+          mainAxisAlignment: MainAxisAlignment.center, // Agar rapi di tengah
+          children: [
+              CircularProgressIndicator(color: Colors.yellow), // [cite: 41]
+              const SizedBox(height: 20), // Memberi jarak
+              const Text( // [cite: 42]
+              'Memuat Kamera... Harap tunggu.',
+              style: TextStyle(color: Colors.white, fontSize: 18), // [cite: 42]
+            ),
+            ],
+          ),
+        ),
+      );
     }
     return Scaffold( // [cite: 342]
       appBar: AppBar(title: const Text('Kamera OCR')), // [cite: 343]
